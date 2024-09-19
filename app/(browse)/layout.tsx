@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Container from './_components/container';
 import Navbar from './_components/navbar';
 import Sidebar, { SidebarSkeleton } from './_components/sidebar';
+
 const Browserlayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>

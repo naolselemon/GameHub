@@ -11,7 +11,7 @@ interface RecommendedProps {
 
 const Recommended = ({ data }: RecommendedProps) => {
   const { collapsed } = useSidebar((state) => state);
-  const showLabel = !collapsed && data.length > 0;
+  const showLabel = !collapsed && data?.length > 0;
   return (
     <div>
       {showLabel && (
@@ -20,7 +20,7 @@ const Recommended = ({ data }: RecommendedProps) => {
         </div>
       )}
       <ul className="space-y-2 px-2">
-        {data.map((user) => (
+        {data?.map((user) => (
           <UserItem
             key={user.id}
             username={user.username}
