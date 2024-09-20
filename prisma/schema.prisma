@@ -24,6 +24,10 @@ model user {
   follower follow[]  @relation("Follower")
   following follow[] @relation("FollowedBy")
 
+  blocking  block[] @relation("Blocking")
+  blockedBy block[] @relation("BlockedBy")
+
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -42,4 +46,17 @@ model follow {
   @@unique([followerId, followingId])
   @@index([followerId])
   @@index([followingId])
+}
+
+model block {
+  id String @id @default(uuid())
+  blockerId String
+  blockedId String
+
+  blocker user @relation(name: "Blocking", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked user @relation(name: "BlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@unique([blockerId, blockedId])
+  @@index([blockerId])
+  @@index([blockedId])
 }
